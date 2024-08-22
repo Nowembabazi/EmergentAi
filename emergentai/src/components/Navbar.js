@@ -1,10 +1,16 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const navigate = useNavigate();
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
+  };
+
+  const handleRegisterClick = () => {
+    navigate('/login'); // Change '/login' to your actual login route
   };
 
   return (
@@ -17,7 +23,10 @@ function Navbar() {
           <a href="#" className="text-gray-700 hover:text-blue-900">Resources</a>
           <a href="#" className="text-gray-700 hover:text-blue-900">Why Us</a>
         </div>
-        <button className="bg-blue-900 text-white px-4 py-2 rounded-full hidden md:block">
+        <button 
+          onClick={handleRegisterClick} 
+          className="bg-blue-900 text-white px-4 py-2 rounded-full hidden md:block"
+        >
           Register
         </button>
         <button onClick={toggleMenu} className="md:hidden text-gray-700 focus:outline-none">
@@ -32,7 +41,12 @@ function Navbar() {
           <a href="#" className="block px-4 py-2 text-gray-700 hover:bg-blue-50">Solutions</a>
           <a href="#" className="block px-4 py-2 text-gray-700 hover:bg-blue-50">Resources</a>
           <a href="#" className="block px-4 py-2 text-gray-700 hover:bg-blue-50">Why Us</a>
-          <a href="#" className="block px-4 py-2 bg-blue-900 text-white hover:bg-blue-700">Register</a>
+          <a 
+            onClick={handleRegisterClick} 
+            className="block px-4 py-2 bg-blue-900 text-white hover:bg-blue-700 cursor-pointer"
+          >
+            Register
+          </a>
         </div>
       )}
     </nav>
