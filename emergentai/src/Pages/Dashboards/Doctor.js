@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom"; // Import useNavigate
 import Sidebar from "../../components/Sidebar";
 import TopNav from "../../components/TopNav";
 
 const Doctor = () => {
   const [appointments, setAppointments] = useState([]);
+  const navigate = useNavigate(); // Initialize useNavigate
 
   // Fetching data from the API (Replace with your actual API endpoint)
   useEffect(() => {
@@ -12,6 +14,11 @@ const Doctor = () => {
       .then((data) => setAppointments(data))
       .catch((error) => console.error("Error fetching data:", error));
   }, []);
+
+  // Function to handle navigation
+  const handleAddPatientClick = () => {
+    navigate("/patient-form");
+  };
 
   return (
     <div className="flex h-screen">
@@ -26,7 +33,12 @@ const Doctor = () => {
               <h2 className="text-xl font-semibold">Hello Jane</h2>
               <p className="text-gray-400">Patient reports are updated in real-time always.</p>
             </div>
-            <button className="bg-blue-900 text-white px-4 py-2 rounded-full">Add Patient</button>
+            <button
+              onClick={handleAddPatientClick} // Handle button click
+              className="bg-blue-900 text-white px-4 py-2 rounded-full"
+            >
+              Add Patient
+            </button>
           </div>
 
           <div className="grid grid-cols-3 gap-4 mb-8">
