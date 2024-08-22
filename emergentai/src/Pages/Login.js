@@ -4,15 +4,22 @@ import { useNavigate } from "react-router-dom";
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [dashboard, setDashboard] = useState(""); // Add state to track the selected dashboard
   const navigate = useNavigate(); // Initialize the navigate function
 
   const handleLogin = (e) => {
     e.preventDefault();
     // Implement your login logic here
-    console.log("Email:", email, "Password:", password);
+    console.log("Email:", email, "Password:", password, "Dashboard:", dashboard);
 
-    // Navigate to the /doctors page after login
-    navigate("/doctor");
+    // Navigate based on the selected dashboard
+    if (dashboard === "doctor") {
+      navigate("/doctor");
+    } else if (dashboard === "patient") {
+      navigate("/patient");
+    } else {
+      alert("Please select a dashboard.");
+    }
   };
 
   return (
@@ -46,6 +53,19 @@ const Login = () => {
             <div className="text-right mt-2">
               <a href="#" className="text-blue-500 hover:underline">Forgot Password?</a>
             </div>
+          </div>
+
+          <div className="mb-6">
+            <label className="block text-gray-700">Choose Dashboard</label>
+            <select
+              value={dashboard}
+              onChange={(e) => setDashboard(e.target.value)}
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500"
+            >
+              <option value="" disabled>Select a dashboard</option>
+              <option value="doctor">Doctor Dashboard</option>
+              <option value="patient">Patient Dashboard</option>
+            </select>
           </div>
 
           <button type="submit" className="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition">
