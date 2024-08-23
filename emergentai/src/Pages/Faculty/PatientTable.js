@@ -45,6 +45,7 @@ const PatientTable = () => {
     <div className="flex h-screen bg-gray-100">
       <SideNav />
       <div className="flex-1 flex flex-col">
+
         <TopNav />
         <main className="flex-1 p-12 overflow-auto">
           <div className="bg-white rounded-lg shadow-md p-8 mx-auto max-w-5xl">
