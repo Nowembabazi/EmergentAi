@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
+import { useNavigate } from "react-router-dom"; // Import useNavigate
 import SideNav from "../../components/Faculty/SideNav";
 import TopNav from "../../components/Faculty/TopNav";
 
@@ -7,6 +7,7 @@ const PatientTable = () => {
   const [patients, setPatients] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const resultsPerPage = 10;
+  const navigate = useNavigate(); // Initialize useNavigate
 
   useEffect(() => {
     // Simulating an API call
@@ -28,6 +29,10 @@ const PatientTable = () => {
     setCurrentPage(pageNumber);
   };
 
+  const handleAddPatient = () => {
+    navigate("/patient-form"); // Navigate to PatientForm page
+  };
+
   // Pagination logic
   const indexOfLastResult = currentPage * resultsPerPage;
   const indexOfFirstResult = indexOfLastResult - resultsPerPage;
@@ -47,7 +52,10 @@ const PatientTable = () => {
               <h2 className="text-xl font-semibold">
                 Patient Details ({patients.length})
               </h2>
-              <button className="bg-blue-500 text-white px-4 py-2 rounded">
+              <button
+                onClick={handleAddPatient}
+                className="bg-blue-500 text-white px-4 py-2 rounded"
+              >
                 Add Patient
               </button>
             </div>

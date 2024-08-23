@@ -77,7 +77,7 @@ const PatientForm = () => {
       <Sidebar />
       <div className="flex-1 flex flex-col">
         <TopNav />
-        <main className="flex-1 bg-white p-4 rounded-lg shadow-md mt-4 overflow-y-auto">
+        <main className="flex-1 bg-white p-4 rounded-lg ml-6 mr-6 shadow-md mt-4 overflow-y-auto">
           <h2 className="text-2xl font-bold mb-6 text-gray-600">Add Patient</h2>
 
           <form onSubmit={handleSubmit}>
