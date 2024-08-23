@@ -16,7 +16,7 @@ const Sidebar = () => {
       {/* Menu */}
       <div className="flex flex-col mt-8 space-y-4">
         <a
-          href="#doctor"
+          href="/doctor"
           className="flex items-center px-6 py-2 text-blue-500 hover:bg-gray-100"
         >
           <div className="mr-4">
@@ -26,7 +26,7 @@ const Sidebar = () => {
           <span>Dashboard</span>
         </a>
         <a
-          href="#patient-form"
+          href="/patient-table"
           className="flex items-center px-6 py-2 text-gray-600 hover:bg-gray-100"
         >
           <div className="mr-4">
