@@ -30,17 +30,17 @@ const Sidebar = () => {
           className="flex items-center px-6 py-2 text-gray-600 hover:bg-gray-100"
         >
           <div className="mr-4">
-            {/* Patients Icon */}
+          
             <UserOutlined className="w-6 h-6" />
           </div>
           <span>Patients</span>
         </a>
         <a
-          href="#settings"
+          href="/profile-settings"
           className="flex items-center px-6 py-2 text-gray-600 hover:bg-gray-100"
         >
           <div className="mr-4">
-            {/* Settings Icon */}
+           
             <SettingOutlined className="w-6 h-6" />
           </div>
           <span>Settings</span>

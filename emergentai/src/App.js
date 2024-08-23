@@ -13,6 +13,7 @@ import GenerateDateReport from './Pages/Faculty/GenerateDateReport';
 import GenerateReport from './Pages/Faculty/GenerateReport';
 import PatientBio from './Pages/Faculty/PatientBio';
 import PatientTable from './Pages/Faculty/PatientTable';
+import ProfileSettings from './Pages/Settings/ProfileSettings';
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
       <Route path="/generate-date" element={<GenerateDateReport />} />
       <Route path="/generate-report" element={<GenerateReport />} />
       <Route path="/patient-form" element={<PatientForm />} />
+      <Route path="/profile-settings" element={<ProfileSettings />} />
       </Routes>
     </BrowserRouter>
     // <ViewPatient/>

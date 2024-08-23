@@ -36,7 +36,7 @@ const SideNav = () => {
           <span>Patients</span>
         </a>
         <a
-          href="#settings"
+          href="/profile-settings"
           
           className="flex items-center px-6 py-2 text-gray-600 hover:bg-gray-100"
         >
