@@ -1,42 +1,51 @@
-import React, { useState } from "react";
-import { Switch, Menu, Modal, Button, Input } from "antd";
+import React, { useState, useEffect } from "react";
+import { UserOutlined, MailOutlined, PhoneOutlined, SettingOutlined, BellOutlined, GlobalOutlined, DeleteOutlined } from "@ant-design/icons";
 import axios from "axios";
+import { Modal, Input } from "antd";
 import { Link } from "react-router-dom";
-import {
-  UserOutlined,
-  MailOutlined,
-  PhoneOutlined,
-  SettingOutlined,
-  BellOutlined,
-  GlobalOutlined,
-  DeleteOutlined,
-  CheckOutlined,
-  CloseOutlined,
-} from "@ant-design/icons";
-import Sidebar from "../../components/Doctor/Sidebar";
-import TopNav from "../../components/Doctor/TopNav";
+import SideNav from "../../components/Faculty/SideNav";
+import TopNav from "../../components/Faculty/TopNav";
 
-const NotificationSettings = () => {
-  const [notificationPreferences, setNotificationPreferences] = useState({
-    email: true,
-    sms: true,
-    app: false,
-  });
+const LanguageSettings = () => {
   const [formData, setFormData] = useState({
     username: "Jane Carol",
     email: "jane@gmail.com",
     phone: "+256708210796",
+    language: "en", // Default language
   });
+  
+  const [languages, setLanguages] = useState([]);
+  const [isModalVisible, setIsModalVisible] = useState(false); 
+  const [password, setPassword] = useState(""); 
 
-  const [isModalVisible, setIsModalVisible] = useState(false);
-  const [password, setPassword] = useState("");
+  // Fetch list of languages from API
+  useEffect(() => {
+    const fetchLanguages = async () => {
+      try {
+        const response = await axios.get("https://restcountries.com/v3.1/all"); // Example API that includes language data
+        const languageSet = new Set();
+        response.data.forEach(country => {
+          Object.values(country.languages || {}).forEach(lang => languageSet.add(lang));
+        });
+        setLanguages([...languageSet]);
+      } catch (error) {
+        console.error("Failed to fetch languages", error);
+      }
+    };
+
+    fetchLanguages();
+  }, []);
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
 
   const showModal = () => {
     setIsModalVisible(true); // Show modal
-  };
-
-  const handlePasswordChange = (e) => {
-    setPassword(e.target.value);
   };
 
   const handleOk = async () => {
@@ -44,12 +53,12 @@ const NotificationSettings = () => {
       alert("Please enter your password.");
       return;
     }
+    setIsModalVisible(false);
     try {
       const response = await axios.delete("/api/delete-account", {
         data: { password },
       });
       alert("Account deleted successfully!");
-      setIsModalVisible(false); // Hide modal after successful deletion
     } catch (error) {
       console.error("Failed to delete account", error);
       alert("An error occurred. Please try again.");
@@ -60,18 +69,23 @@ const NotificationSettings = () => {
     setIsModalVisible(false); // Hide modal
   };
 
-  const handleSwitchChange = (type) => {
-    const newPreferences = {
-      ...notificationPreferences,
-      [type]: !notificationPreferences[type],
-    };
-    setNotificationPreferences(newPreferences);
-    axios.post("/api/notification-preferences", newPreferences);
+  const handlePasswordChange = (e) => {
+    setPassword(e.target.value);
+  };
+
+  const handleSubmit = async () => {
+    try {
+      const response = await axios.put("/api/update-profile", formData);
+      alert("Profile updated successfully!");
+    } catch (error) {
+      console.error("Failed to update profile", error);
+      alert("An error occurred. Please try again.");
+    }
   };
 
   return (
     <div className="flex h-screen overflow-hidden">
-      <Sidebar />
+      <SideNav />
 
       <div className="flex-1 flex flex-col">
         <TopNav />
@@ -79,6 +93,7 @@ const NotificationSettings = () => {
         <div className="flex-1 overflow-y-auto pt-16 pb-8 bg-gray-100">
           <div className="container mx-auto px-4 py-6 max-w-4xl">
             <div className="bg-white shadow-md rounded-lg p-6 flex space-x-4">
+              {/* Left Panel */}
               <div className="w-64">
                 <div className="flex flex-col items-center">
                   <img
@@ -118,32 +133,37 @@ const NotificationSettings = () => {
                 </div>
               </div>
 
-              {/* Main Content */}
-              <div className="flex-1 bg-white shadow-md rounded-lg p-6">
-                <h2 className="text-xl text-gray-600 font-bold mb-4">
-                  Notification Preferences
-                </h2>
-                <div className="space-y-4">
-                  <div className="flex items-center text-gray-700 justify-between">
-                    <span>Email Notifications</span>
-                    <Switch
-                      checked={notificationPreferences.email}
-                      onChange={() => handleSwitchChange("email")}
-                    />
+              {/* Right Panel */}
+              <div className="flex-1 max-w-xl">
+                <h2 className="text-xl font-bold mb-4 text-gray-600">Language Preferences</h2>
+                <div className="space-y-6">
+                  {/* Language Dropdown */}
+                  <div className="flex items-center border border-gray-300 rounded-lg p-2">
+                    <select
+                      name="language"
+                      value={formData.language}
+                      onChange={handleInputChange}
+                      className="w-full focus:outline-none"
+                    >
+                      {languages.map((language, index) => (
+                        <option key={index} value={language}>
+                          {language}
+                        </option>
+                      ))}
+                    </select>
                   </div>
-                  <div className="flex items-center text-gray-700 justify-between">
-                    <span>SMS Notifications</span>
-                    <Switch
-                      checked={notificationPreferences.sms}
-                      onChange={() => handleSwitchChange("sms")}
-                    />
-                  </div>
-                  <div className="flex items-center text-gray-700 justify-between">
-                    <span>App Notifications</span>
-                    <Switch
-                      checked={notificationPreferences.app}
-                      onChange={() => handleSwitchChange("app")}
-                    />
+
+                  {/* Action Buttons */}
+                  <div className="flex justify-start space-x-4">
+                    <button
+                      onClick={handleSubmit}
+                      className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600"
+                    >
+                      Update
+                    </button>
+                    <button className="bg-gray-200 text-black px-4 py-2 rounded-lg hover:bg-gray-300">
+                      Cancel
+                    </button>
                   </div>
                 </div>
               </div>
@@ -151,7 +171,6 @@ const NotificationSettings = () => {
           </div>
         </div>
       </div>
-
       <Modal
         title="Confirm Deletion"
         open={isModalVisible} // Use "open" instead of "visible"
@@ -175,4 +194,4 @@ const NotificationSettings = () => {
   );
 };
 
-export default NotificationSettings;
+export default LanguageSettings;
