@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom"; // Import useNavigate
-import Sidebar from "../../components/Sidebar";
-import TopNav from "../../components/TopNav";
+import Sidebar from "../../components/Doctor/Sidebar";
+import TopNav from "../../components/Doctor/TopNav";
 
 const Faculty = () => {
   const [appointments, setAppointments] = useState([]);
@@ -19,6 +19,7 @@ const Faculty = () => {
   const handleAddPatientClick = () => {
     navigate("/patient-form");
   };
+
 
   return (
     <div className="flex h-screen">
