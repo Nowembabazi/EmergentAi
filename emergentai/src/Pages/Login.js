@@ -4,24 +4,33 @@ import { useNavigate } from "react-router-dom";
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [dashboard, setDashboard] = useState(""); // Add state to track the selected dashboard
+  const [dashboard, setDashboard] = useState(""); // State to track the selected dashboard
+  const [isLoading, setIsLoading] = useState(false); // State to track loading status
   const navigate = useNavigate(); // Initialize the navigate function
 
   const handleLogin = (e) => {
     e.preventDefault();
-    // Implement your login logic here
-    console.log("Email:", email, "Password:", password, "Dashboard:", dashboard);
+    setIsLoading(true); // Set loading state to true when login starts
 
-    // Navigate based on the selected dashboard
-    if (dashboard === "doctor") {
-      navigate("/doctor");
-    } else if (dashboard === "patient") {
-      navigate("/patient");
-    } else if (dashboard === "faculty") {
-      navigate("/faculty");
-    } else {
-      alert("Please select a dashboard.");
-    }
+    // Simulate a login delay for demonstration purposes
+    setTimeout(() => {
+      console.log("Email:", email, "Password:", password, "Dashboard:", dashboard);
+
+      // Navigate based on the selected dashboard
+      if (dashboard === "doctor") {
+        navigate("/doctor");
+      } else if (dashboard === "patient") {
+        navigate("/patient");
+      } else if (dashboard === "faculty") {
+        navigate("/faculty");
+      } else if (dashboard === "lab") {
+        navigate("/lab");
+      } else {
+        alert("Please select a dashboard.");
+      }
+
+      setIsLoading(false); // Reset loading state after login
+    }, 2000); // Simulating a 2-second delay for login process
   };
 
   return (
@@ -67,12 +76,17 @@ const Login = () => {
               <option value="" disabled>Select a dashboard</option>
               <option value="doctor">Doctor Dashboard</option>
               <option value="patient">Patient Dashboard</option>
-              <option value="faculty">Faculty Dashboard</option> {/* New option added here */}
+              <option value="faculty">Faculty Dashboard</option>
+              <option value="lab">Lab-Tech Dashboard</option>
             </select>
           </div>
 
-          <button type="submit" className="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition">
-            Sign in
+          <button
+            type="submit"
+            className="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition"
+            disabled={isLoading} // Disable button while loading
+          >
+            {isLoading ? "Signing in..." : "Sign in"} {/* Show "Signing in..." when loading */}
           </button>
         </form>
 

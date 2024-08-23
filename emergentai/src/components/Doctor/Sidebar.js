@@ -1,5 +1,6 @@
 import React from "react";
 import { HomeOutlined, UserOutlined, SettingOutlined, LogoutOutlined } from "@ant-design/icons";
+import { Menu } from "antd";
 
 const Sidebar = () => {
   return (
@@ -14,47 +15,25 @@ const Sidebar = () => {
       </div>
 
       {/* Menu */}
-      <div className="flex flex-col mt-8 space-y-2">
-        <a
-          href="/doctor"
-          className="flex items-center px-6 py-3 text-blue-700 bg-blue-100 rounded-lg mx-4 hover:bg-blue-200 transition duration-300 ease-in-out"
-        >
-          <div className="mr-4">
-            <HomeOutlined className="w-6 h-6" />
-          </div>
-          <span className="font-medium">Dashboard</span>
-        </a>
-        <a
-          href="/patient-table"
-          className="flex items-center px-6 py-3 text-gray-700 hover:bg-gray-100 rounded-lg mx-4 transition duration-300 ease-in-out"
-        >
-          <div className="mr-4">
-            <UserOutlined className="w-6 h-6" />
-          </div>
-          <span className="font-medium">Patients</span>
-        </a>
-        <a
-          href="/profile-settings"
-          className="flex items-center px-6 py-3 text-gray-700 hover:bg-gray-100 rounded-lg mx-4 transition duration-300 ease-in-out"
-        >
-          <div className="mr-4">
-            <SettingOutlined className="w-6 h-6" />
-          </div>
-          <span className="font-medium">Settings</span>
-        </a>
-      </div>
+      <Menu mode="inline" className="mt-8" defaultSelectedKeys={['dashboard']}>
+        <Menu.Item key="dashboard" icon={<HomeOutlined />} className="mx-4">
+          <a href="/doctor" className="text-blue-700">Dashboard</a>
+        </Menu.Item>
+        <Menu.Item key="patients" icon={<UserOutlined />} className="mx-4">
+          <a href="/patient-table" className="text-gray-700">Patients</a>
+        </Menu.Item>
+        <Menu.Item key="settings" icon={<SettingOutlined />} className="mx-4">
+          <a href="/profile-settings" className="text-gray-700">Settings</a>
+        </Menu.Item>
+      </Menu>
 
       {/* Logout */}
       <div className="flex items-center justify-center mt-auto mb-8">
-        <a
-          href="#logout"
-          className="flex items-center px-6 py-3 text-red-600 hover:bg-red-100 rounded-lg mx-4 transition duration-300 ease-in-out"
-        >
-          <div className="mr-4">
-            <LogoutOutlined className="w-6 h-6" />
-          </div>
-          <span className="font-medium">Logout</span>
-        </a>
+        <Menu mode="inline" className="w-full">
+          <Menu.Item key="logout" icon={<LogoutOutlined />} className="mx-4">
+            <a href="#logout" className="text-red-600">Logout</a>
+          </Menu.Item>
+        </Menu>
       </div>
     </div>
   );
