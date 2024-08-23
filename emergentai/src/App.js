@@ -8,7 +8,11 @@ import Medical from './Pages/Patients/Medical';
 import Test from './Pages/Patients/Test';
 import Home from './Pages/Home';
 import PatientForm from './Pages/Patients/PatientsForm';
-
+import Faculty from './Pages/Dashboards/Faculty';
+import GenerateDateReport from './Pages/Faculty/GenerateDateReport';
+import GenerateReport from './Pages/Faculty/GenerateReport';
+import PatientBio from './Pages/Faculty/PatientBio';
+import PatientTable from './Pages/Faculty/PatientTable';
 
 function App() {
   return (
@@ -20,6 +24,11 @@ function App() {
       <Route path="/patient" element={<Patient />} />
       <Route path="/test" element={<Test />} />
       <Route path="/medical" element={<Medical />} />
+      <Route path="/faculty" element={<Faculty />} />
+      <Route path="/patient-bio" element={<PatientBio />} />
+      <Route path="/patient-table" element={<PatientTable />} />
+      <Route path="/generate-date" element={<GenerateDateReport />} />
+      <Route path="/generate-report" element={<GenerateReport />} />
       <Route path="/patient-form" element={<PatientForm />} />
       </Routes>
     </BrowserRouter>
