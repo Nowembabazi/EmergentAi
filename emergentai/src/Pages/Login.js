@@ -17,6 +17,8 @@ const Login = () => {
       navigate("/doctor");
     } else if (dashboard === "patient") {
       navigate("/patient");
+    } else if (dashboard === "faculty") {
+      navigate("/faculty");
     } else {
       alert("Please select a dashboard.");
     }
@@ -65,6 +67,7 @@ const Login = () => {
               <option value="" disabled>Select a dashboard</option>
               <option value="doctor">Doctor Dashboard</option>
               <option value="patient">Patient Dashboard</option>
+              <option value="faculty">Faculty Dashboard</option> {/* New option added here */}
             </select>
           </div>
 

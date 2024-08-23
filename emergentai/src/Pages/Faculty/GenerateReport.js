@@ -113,6 +113,7 @@ const GenerateReport = () => {
             ))}
           </tbody>
         </table>
+        
       </div>
     </div>
   );
