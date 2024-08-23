@@ -4,60 +4,56 @@ import { HomeOutlined, UserOutlined, SettingOutlined, LogoutOutlined } from "@an
 
 const Sidebar = () => {
   return (
-    <div className="flex flex-col w-64 h-screen bg-white shadow-lg">
+    <div className="flex flex-col w-64 h-screen bg-white shadow-xl">
       {/* Logo */}
-      <div className="flex items-center justify-center h-20 bg-blue-700">
+      <div className="flex items-center justify-center h-20 bg-blue-800">
         <img
           src="https://via.placeholder.com/150"
           alt="EmergentAI Logo"
-          className="h-10"
+          className="h-12 w-12 rounded-full object-cover"
         />
       </div>
 
-    
-      <div className="flex flex-col mt-8 space-y-4">
-       
+      {/* Menu */}
+      <div className="flex flex-col mt-8 space-y-3">
         <Link
           to="/patient"
-          className="flex items-center px-6 py-2 text-blue-500 hover:bg-gray-100"
+          className="flex items-center px-6 py-3 text-blue-600 bg-blue-100 rounded-lg mx-4 hover:bg-blue-200 transition duration-300 ease-in-out"
         >
           <div className="mr-4">
             <HomeOutlined className="w-6 h-6" />
           </div>
-          <span>Dashboard</span>
+          <span className="font-medium">Dashboard</span>
         </Link>
 
-        {/* Medical History */}
         <Link
           to="/medical"
-          className="flex items-center px-6 py-2 text-gray-600 hover:bg-gray-100"
+          className="flex items-center px-6 py-3 text-gray-700 hover:bg-gray-200 rounded-lg mx-4 transition duration-300 ease-in-out"
         >
           <div className="mr-4">
             <UserOutlined className="w-6 h-6" />
           </div>
-          <span>Medical History</span>
+          <span className="font-medium">Medical History</span>
         </Link>
 
-        {/* Test Records */}
         <Link
           to="/test"
-          className="flex items-center px-6 py-2 text-gray-600 hover:bg-gray-100"
+          className="flex items-center px-6 py-3 text-gray-700 hover:bg-gray-200 rounded-lg mx-4 transition duration-300 ease-in-out"
         >
           <div className="mr-4">
             <UserOutlined className="w-6 h-6" />
           </div>
-          <span>Test Records</span>
+          <span className="font-medium">Test Records</span>
         </Link>
 
-      
         <Link
           to="/profile-settings"
-          className="flex items-center px-6 py-2 text-gray-600 hover:bg-gray-100"
+          className="flex items-center px-6 py-3 text-gray-700 hover:bg-gray-200 rounded-lg mx-4 transition duration-300 ease-in-out"
         >
           <div className="mr-4">
             <SettingOutlined className="w-6 h-6" />
           </div>
-          <span>Settings</span>
+          <span className="font-medium">Settings</span>
         </Link>
       </div>
 
@@ -65,12 +61,12 @@ const Sidebar = () => {
       <div className="flex items-center justify-center mt-auto mb-8">
         <Link
           to="#logout"
-          className="flex items-center px-6 py-2 text-gray-600 hover:bg-gray-100"
+          className="flex items-center px-6 py-3 text-red-600 hover:bg-red-100 rounded-lg mx-4 transition duration-300 ease-in-out"
         >
           <div className="mr-4">
             <LogoutOutlined className="w-6 h-6" />
           </div>
-          <span>Logout</span>
+          <span className="font-medium">Logout</span>
         </Link>
       </div>
     </div>

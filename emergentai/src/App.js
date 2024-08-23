@@ -15,6 +15,7 @@ import PatientBio from './Pages/Faculty/PatientBio';
 import PatientTable from './Pages/Faculty/PatientTable';
 import ProfileSettings from './Pages/Settings/ProfileSettings';
 import NotificationSettings from './Pages/Settings/NotificationSettings';
+import LanguageSettings from './Pages/Settings/LanguageSettings';
 
 function App() {
   return (
@@ -34,6 +35,7 @@ function App() {
       <Route path="/patient-form" element={<PatientForm />} />
       <Route path="/profile-settings" element={<ProfileSettings />} />
       <Route path="/notification-settings" element={<NotificationSettings />} />
+      <Route path="/language-settings" element={<LanguageSettings />} />
       </Routes>
     </BrowserRouter>
     // <ViewPatient/>
