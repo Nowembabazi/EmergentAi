@@ -17,6 +17,9 @@ import PatientTable from './Pages/Faculty/PatientTable';
 import ProfileSettings from './Pages/Settings/ProfileSettings';
 import NotificationSettings from './Pages/Settings/NotificationSettings';
 import LanguageSettings from './Pages/Settings/LanguageSettings';
+import NewTests from './Pages/Lab/NewTests';
+import ViewTests from './Pages/Lab/ViewTests';
+import CompletedTests from './Pages/Lab/CompletedTests';
 
 function App() {
   return (
@@ -30,6 +33,9 @@ function App() {
       <Route path="/medical" element={<Medical />} />
       <Route path="/lab" element={<Lab />} />
       <Route path="/faculty" element={<Faculty />} />
+      <Route path="/new-tests" element={<NewTests />} />
+      <Route path="/view-tests" element={<ViewTests />} />
+      <Route path="/completed-tests" element={<CompletedTests />} />
       <Route path="/patient-bio" element={<PatientBio />} />
       <Route path="/patient-table" element={<PatientTable />} />
       <Route path="/generate-date" element={<GenerateDateReport />} />

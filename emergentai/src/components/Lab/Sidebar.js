@@ -37,13 +37,13 @@ const Sidebar = () => {
         </Menu.Item>
 
         <Menu.Item key="2" icon={<FileOutlined />} className="menu-item">
-          <Link to="/new-test">
+          <Link to="/new-tests">
             <Text>New Tests</Text>
           </Link>
         </Menu.Item>
 
         <Menu.Item key="3" icon={<MedicineBoxOutlined />} className="menu-item">
-          <Link to="/completed-test">
+          <Link to="/completed-tests">
             <Text>Completed Tests</Text>
           </Link>
         </Menu.Item>
