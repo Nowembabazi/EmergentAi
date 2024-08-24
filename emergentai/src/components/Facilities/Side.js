@@ -17,10 +17,10 @@ const Side = () => {
       {/* Menu */}
       <Menu mode="inline" className="mt-8" defaultSelectedKeys={['dashboard']}>
         <Menu.Item key="dashboard" icon={<HomeOutlined />} className="mx-4">
-          <a href="/Faculty" className="text-blue-600">Dashboard</a>
+          <a href="/Facility-card" className="text-blue-600">Facilities</a>
         </Menu.Item>
         <Menu.Item key="patients" icon={<UserOutlined />} className="mx-4">
-          <a href="/patient-table" className="text-gray-700">Patients</a>
+          <a href="/facility-form" className="text-gray-700">FAC_ADMIN</a>
         </Menu.Item>
         <Menu.Item key="settings" icon={<SettingOutlined />} className="mx-4">
           <a href="/profile-settings" className="text-gray-700">Settings</a>

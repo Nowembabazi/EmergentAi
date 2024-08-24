@@ -21,6 +21,7 @@ import NewTests from './Pages/Lab/NewTests';
 import ViewTests from './Pages/Lab/ViewTests';
 import CompletedTests from './Pages/Lab/CompletedTests';
 import FacilityCard from './Pages/Facilities/FacilityCard';
+import FacilityForm from './Pages/Facilities/FaciltyForm';
 
 function App() {
   return (
@@ -39,6 +40,7 @@ function App() {
       <Route path="/facility-card" element={<FacilityCard />} />
       <Route path="/completed-tests" element={<CompletedTests />} />
       <Route path="/patient-bio" element={<PatientBio />} />
+      <Route path="/facility-form" element={<FacilityForm />} />
       <Route path="/patient-table" element={<PatientTable />} />
       <Route path="/generate-date" element={<GenerateDateReport />} />
       <Route path="/generate-report" element={<GenerateReport />} />

@@ -25,6 +25,8 @@ const Login = () => {
         navigate("/faculty");
       } else if (dashboard === "lab") {
         navigate("/lab");
+      } else if (dashboard === "facility-card") {
+        navigate("/facility-card");
       } else {
         alert("Please select a dashboard.");
       }
@@ -35,7 +37,7 @@ const Login = () => {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-blue-500">
-      <div className="bg-white p-8 rounded-lg shadow-lg max-w-md w-full">
+      <div className="bg-white p-8 rounded-lg mb-12 mt-12 shadow-lg max-w-md w-full">
         <div className="text-center mb-8">
           <img src="logo_placeholder.png" alt="Emergent AI" className="mx-auto mb-4" />
           <h2 className="text-2xl font-semibold">Welcome back!</h2>
@@ -77,7 +79,8 @@ const Login = () => {
               <option value="doctor">Doctor Dashboard</option>
               <option value="patient">Patient Dashboard</option>
               <option value="faculty">Faculty Dashboard</option>
-              <option value="lab">Lab-Tech Dashboard</option>
+              <option value="lab">Lab Dashboard</option>
+              <option value="facility-card">Facilities Dashboard</option>
             </select>
           </div>
 
@@ -97,7 +100,7 @@ const Login = () => {
           Continue with Google
         </button>
 
-        <div className="text-center mt-8 text-gray-600">
+        <div className="text-center mt-4 text-gray-600">
           <p>Don't have an account? <a href="#" className="text-blue-500 hover:underline">Sign up</a></p>
         </div>
       </div>
