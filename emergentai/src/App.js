@@ -20,6 +20,7 @@ import LanguageSettings from './Pages/Settings/LanguageSettings';
 import NewTests from './Pages/Lab/NewTests';
 import ViewTests from './Pages/Lab/ViewTests';
 import CompletedTests from './Pages/Lab/CompletedTests';
+import FacilityCard from './Pages/Facilities/FacilityCard';
 
 function App() {
   return (
@@ -35,6 +36,7 @@ function App() {
       <Route path="/faculty" element={<Faculty />} />
       <Route path="/new-tests" element={<NewTests />} />
       <Route path="/view-tests" element={<ViewTests />} />
+      <Route path="/facility-card" element={<FacilityCard />} />
       <Route path="/completed-tests" element={<CompletedTests />} />
       <Route path="/patient-bio" element={<PatientBio />} />
       <Route path="/patient-table" element={<PatientTable />} />
