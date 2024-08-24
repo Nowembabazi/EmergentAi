@@ -30,7 +30,11 @@ const PatientTable = () => {
   };
 
   const handleAddPatient = () => {
-    navigate("/patient-form"); // Navigate to PatientForm page
+    navigate("/patient-form");
+  };
+
+  const handleViewPatient = () => {
+    navigate(`/patient-bio`); 
   };
 
   // Pagination logic
@@ -47,7 +51,7 @@ const PatientTable = () => {
       <div className="flex-1 flex flex-col">
 
         <TopNav />
-        <main className="flex-1 p-12 overflow-auto">
+        <main className="flex-1 p-8 overflow-auto">
           <div className="bg-white rounded-lg shadow-md p-8 mx-auto max-w-5xl">
             <div className="flex justify-between items-center mb-4">
               <h2 className="text-xl font-semibold">
@@ -87,21 +91,11 @@ const PatientTable = () => {
                     <td className="p-2 text-red-500">{patient.result}</td>
                     <td className="p-2">{patient.nextVisit}</td>
                     <td className="p-2">
-                      <button className="text-gray-500">
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          className="h-5 w-5"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          stroke="currentColor"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth="2"
-                            d="M6 18L18 6M6 6l12 12"
-                          />
-                        </svg>
+                    <button
+                        className="text-blue-500"
+                        onClick={() => handleViewPatient()}
+                      >
+                        ...View
                       </button>
                     </td>
                   </tr>
