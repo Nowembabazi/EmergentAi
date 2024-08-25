@@ -1,7 +1,9 @@
-// src/PatientDashboard.js
 import React from "react";
 import { Bar, Pie, Line } from "react-chartjs-2";
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend, ArcElement, PointElement, LineElement } from 'chart.js';
+import Sideboard from "../../components/Manager/SideBoard";
+import TopNav from "../../components/Manager/TopNav";
+
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend, ArcElement, PointElement, LineElement);
 
 const PatientStatistics = () => {
@@ -70,27 +72,33 @@ const PatientStatistics = () => {
   };
 
   return (
-    <div className="p-8">
-      <h1 className="text-2xl font-bold mb-4">Patient Statistics Summary</h1>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        {/* Bar Chart */}
-        <div className="bg-white p-4 rounded shadow">
-          <Bar data={barData} options={barOptions} />
-        </div>
-        {/* Pie Chart */}
-        <div className="bg-white p-4 rounded shadow">
-          <Pie data={pieData} />
-        </div>
-      </div>
-      <h2 className="text-2xl font-bold mt-8 mb-4">Patient Health Trends</h2>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        {/* Line Chart for Positive Test Results */}
-        <div className="bg-white p-4 rounded shadow">
-          <Line data={lineDataPositive} />
-        </div>
-        {/* Line Chart for TB Symptoms Severity */}
-        <div className="bg-white p-4 rounded shadow">
-          <Line data={lineDataSymptoms} />
+    <div className="flex h-screen">
+      <Sideboard className="fixed top-0 left-0 h-full w-64 bg-gray-800 text-white" />
+      <div className="flex-1 flex flex-col ml-6">
+        <TopNav className="fixed top-0 left-64 right-0 bg-gray-700 text-white p-4 z-10" />
+        <div className="pt-8 flex-1 overflow-auto p-6">
+          <h1 className="text-2xl font-bold mb-4">Patient Statistics Summary</h1>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {/* Bar Chart */}
+            <div className="bg-white p-4 rounded shadow">
+              <Bar data={barData} options={barOptions} />
+            </div>
+            {/* Pie Chart */}
+            <div className="bg-white p-4 rounded shadow">
+              <Pie data={pieData} />
+            </div>
+          </div>
+          <h2 className="text-2xl font-bold mt-8 mb-4">Patient Health Trends</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {/* Line Chart for Positive Test Results */}
+            <div className="bg-white p-4 rounded shadow">
+              <Line data={lineDataPositive} />
+            </div>
+            {/* Line Chart for TB Symptoms Severity */}
+            <div className="bg-white p-4 rounded shadow">
+              <Line data={lineDataSymptoms} />
+            </div>
+          </div>
         </div>
       </div>
     </div>

@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
+import Sideboard from '../../components/Manager/SideBoard';
+import TopNav from '../../components/Manager/TopNav';
 
-const ApproveDoctors = () => {
+const ApproveDoctor = () => {
   const [doctors, setDoctors] = useState([]);
 
   // Simulate fetching data
@@ -19,45 +21,51 @@ const ApproveDoctors = () => {
   }, []);
 
   return (
-    <div className="p-6">
-      <h2 className="text-xl font-semibold mb-4">Approve Doctors</h2>
-      <table className="min-w-full bg-white border border-gray-300">
-        <thead>
-          <tr>
-            <th className="border px-4 py-2">DoctorID</th>
-            <th className="border px-4 py-2">Doctor Name</th>
-            <th className="border px-4 py-2">Contact</th>
-            <th className="border px-4 py-2">Approval Status</th>
-            <th className="border px-4 py-2">Specialization</th>
-          </tr>
-        </thead>
-        <tbody>
-          {doctors.map((doctor) => (
-            <tr key={doctor.DoctorID}>
-              <td className="border px-4 py-2">{doctor.DoctorID}</td>
-              <td className="border px-4 py-2">{doctor.DoctorName}</td>
-              <td className="border px-4 py-2">{doctor.Contact}</td>
-              <td className="border px-4 py-2">
-                <button className="bg-blue-500 text-white px-3 py-1 rounded">{doctor.ApprovalStatus}</button>
-              </td>
-              <td className="border px-4 py-2">{doctor.Specialization}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+    <div className="flex h-screen">
+      <Sideboard className="fixed top-0 left-0 h-full w-64 bg-gray-800 text-white" />
+      <div className="flex-1 flex flex-col ml-6">
+        <TopNav className="fixed top-0 left-64 right-0 bg-gray-700 text-white p-4 z-10" />
+        <div className="pt-8 flex-1 overflow-auto p-6">
+          <h2 className="text-xl font-semibold mb-4">Approve Doctors</h2>
+          <table className="min-w-full bg-white border border-gray-300">
+            <thead>
+              <tr>
+                <th className="border px-4 py-2">DoctorID</th>
+                <th className="border px-4 py-2">Doctor Name</th>
+                <th className="border px-4 py-2">Contact</th>
+                <th className="border px-4 py-2">Approval Status</th>
+                <th className="border px-4 py-2">Specialization</th>
+              </tr>
+            </thead>
+            <tbody>
+              {doctors.map((doctor) => (
+                <tr key={doctor.DoctorID}>
+                  <td className="border px-4 py-2">{doctor.DoctorID}</td>
+                  <td className="border px-4 py-2">{doctor.DoctorName}</td>
+                  <td className="border px-4 py-2">{doctor.Contact}</td>
+                  <td className="border px-4 py-2">
+                    <button className="bg-blue-500 text-white px-3 py-1 rounded">{doctor.ApprovalStatus}</button>
+                  </td>
+                  <td className="border px-4 py-2">{doctor.Specialization}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
 
-      <div className="mt-4 flex justify-between items-center">
-        <p>Showing 10 results out of 1230</p>
-        <div className="flex space-x-2">
-          <button className="px-3 py-1 border rounded">1</button>
-          <button className="px-3 py-1 border rounded">2</button>
-          <span>...</span>
-          <button className="px-3 py-1 border rounded">9</button>
-          <button className="px-3 py-1 border rounded">10</button>
+          <div className="mt-4 flex justify-between items-center">
+            <p>Showing 10 results out of 1230</p>
+            <div className="flex space-x-2">
+              <button className="px-3 py-1 border rounded">1</button>
+              <button className="px-3 py-1 border rounded">2</button>
+              <span>...</span>
+              <button className="px-3 py-1 border rounded">9</button>
+              <button className="px-3 py-1 border rounded">10</button>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   );
 };
 
-export default ApproveDoctors;
+export default ApproveDoctor;

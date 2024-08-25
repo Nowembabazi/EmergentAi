@@ -22,6 +22,12 @@ import ViewTests from './Pages/Lab/ViewTests';
 import CompletedTests from './Pages/Lab/CompletedTests';
 import FacilityCard from './Pages/Facilities/FacilityCard';
 import FacilityForm from './Pages/Facilities/FaciltyForm';
+import Manager from './Pages/Dashboards/Manager';
+import ApproveDoctor from './Pages/Manager/ApproveDoctor';
+import DeleteDoctor from './Pages/Manager/DeleteDoctor';
+import ModelPerformance from './Pages/Manager/ModelPerformance';
+import ReportGeneration from './Pages/Manager/ReportGeneration';
+import PatientStatistics from './Pages/Manager/PatientStatistics';
 
 function App() {
   return (
@@ -41,6 +47,13 @@ function App() {
       <Route path="/completed-tests" element={<CompletedTests />} />
       <Route path="/patient-bio" element={<PatientBio />} />
       <Route path="/facility-form" element={<FacilityForm />} />
+      <Route path="/manager" element={<Manager />} />
+      <Route path="/approve-doctor" element={<ApproveDoctor />} />
+      <Route path="/delete-doctor" element={<DeleteDoctor />} />
+      <Route path="/model-performance" element={<ModelPerformance />} />
+      <Route path="/report-generation" element={<ReportGeneration />} />
+      <Route path="/patient-statistics" element={<PatientStatistics />} />
+      <Route path="/" element={<FacilityForm />} />
       <Route path="/patient-table" element={<PatientTable />} />
       <Route path="/generate-date" element={<GenerateDateReport />} />
       <Route path="/generate-report" element={<GenerateReport />} />

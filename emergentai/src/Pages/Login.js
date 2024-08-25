@@ -27,6 +27,8 @@ const Login = () => {
         navigate("/lab");
       } else if (dashboard === "facility-card") {
         navigate("/facility-card");
+      } else if (dashboard === "manager") {
+        navigate("/manager");
       } else {
         alert("Please select a dashboard.");
       }
@@ -80,7 +82,8 @@ const Login = () => {
               <option value="patient">Patient Dashboard</option>
               <option value="faculty">Faculty Dashboard</option>
               <option value="lab">Lab Dashboard</option>
-              <option value="facility-card">Facilities Dashboard</option>
+              <option value="facility-card">Super-Admin Dashboard</option>
+              <option value="manager">Manager</option>
             </select>
           </div>
 
