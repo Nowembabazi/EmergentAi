@@ -1,6 +1,8 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import TopNav from "../../components/Patient/TopNav";
 import Sidebar from "../../components/Patient/Sidebar";
+import AddPatientForm from "./AddForm";
 
 const PatientForm = () => {
   const [formData, setFormData] = useState({
@@ -21,25 +23,24 @@ const PatientForm = () => {
   });
 
   const [errors, setErrors] = useState({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const navigate = useNavigate(); // Initialize the useNavigate hook
 
   const validate = () => {
     let tempErrors = {};
     if (!formData.name) tempErrors.name = "Name is required";
     if (!formData.lastName) tempErrors.lastName = "Last Name is required";
-    if (!formData.phoneNumber)
-      tempErrors.phoneNumber = "Phone Number is required";
+    if (!formData.phoneNumber) tempErrors.phoneNumber = "Phone Number is required";
     if (!formData.email) tempErrors.email = "Email is required";
     if (!formData.age) tempErrors.age = "Age is required";
     if (!formData.district) tempErrors.district = "District is required";
     if (!formData.subCounty) tempErrors.subCounty = "Sub-County is required";
     if (!formData.parish) tempErrors.parish = "Parish is required";
     if (!formData.village) tempErrors.village = "Village is required";
-    if (!formData.nearestHealthUnit)
-      tempErrors.nearestHealthUnit = "Nearest Health Unit is required";
+    if (!formData.nearestHealthUnit) tempErrors.nearestHealthUnit = "Nearest Health Unit is required";
     if (!formData.nin) tempErrors.nin = "NIN is required";
     if (!formData.nextOfKin) tempErrors.nextOfKin = "Next of Kin is required";
-    if (!formData.nextOfKinPhoneNumber)
-      tempErrors.nextOfKinPhoneNumber = "Next of Kin Phone Number is required";
+    if (!formData.nextOfKinPhoneNumber) tempErrors.nextOfKinPhoneNumber = "Next of Kin Phone Number is required";
 
     setErrors(tempErrors);
     return Object.keys(tempErrors).length === 0;
@@ -52,7 +53,7 @@ const PatientForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (validate()) {
-      // Submit form data to API
+      setIsSubmitting(true); 
       fetch("/api/submit-patient", {
         method: "POST",
         headers: {
@@ -62,12 +63,14 @@ const PatientForm = () => {
       })
         .then((response) => response.json())
         .then((data) => {
+          setIsSubmitting(false);
           console.log("Success:", data);
-          // Handle successful submission
+          navigate("/add-form");
         })
         .catch((error) => {
+          setIsSubmitting(false); 
           console.error("Error:", error);
-          // Handle error
+        
         });
     }
   };
@@ -82,7 +85,9 @@ const PatientForm = () => {
 
           <form onSubmit={handleSubmit}>
             <div className="mb-6">
-              <h3 className="text-xl font-semibold text-gray-600 mb-4">A. Bio Information</h3>
+              <h3 className="text-xl font-semibold text-gray-600 mb-4">
+                A. Bio Information
+              </h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
                   <label className="block mb-1 text-gray-600 font-medium">Name</label>
@@ -170,7 +175,9 @@ const PatientForm = () => {
             </div>
 
             <div className="mb-6">
-              <h3 className="text-xl font-semibold mb-4 text-gray-600">B. Address of the Patient</h3>
+              <h3 className="text-xl font-semibold mb-4 text-gray-600">
+                B. Address of the Patient
+              </h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
                   <label className="block mb-1 text-gray-600 font-medium">District</label>
@@ -287,9 +294,12 @@ const PatientForm = () => {
 
             <button
               type="submit"
-              className="w-full bg-blue-600 text-white p-3 rounded hover:bg-blue-700 transition"
+              disabled={isSubmitting}
+              className={`w-full text-white p-3 rounded transition ${
+                isSubmitting ? "bg-blue-400" : "bg-blue-600 hover:bg-blue-700"
+              }`}
             >
-              Save to continue
+              {isSubmitting ? "Saving..." : "Save to continue"}
             </button>
           </form>
         </main>

@@ -28,6 +28,7 @@ import DeleteDoctor from './Pages/Manager/DeleteDoctor';
 import ModelPerformance from './Pages/Manager/ModelPerformance';
 import ReportGeneration from './Pages/Manager/ReportGeneration';
 import PatientStatistics from './Pages/Manager/PatientStatistics';
+import AddForm from './Pages/Patients/AddForm';
 
 function App() {
   return (
@@ -53,6 +54,7 @@ function App() {
       <Route path="/model-performance" element={<ModelPerformance />} />
       <Route path="/report-generation" element={<ReportGeneration />} />
       <Route path="/patient-statistics" element={<PatientStatistics />} />
+      <Route path="/add-form" element={<AddForm />} />
       <Route path="/" element={<FacilityForm />} />
       <Route path="/patient-table" element={<PatientTable />} />
       <Route path="/generate-date" element={<GenerateDateReport />} />
