@@ -3,9 +3,9 @@ import Sidebar from "../../components/Patient/Sidebar";
 import TopNav from "../../components/Patient/TopNav";
 
 const Medical = () => {
-  const [records, setRecords] = useState([]); // Holds the medical history records
-  const [currentPage, setCurrentPage] = useState(1); // Track current page
-  const [recordsPerPage] = useState(7); // Number of records per page
+  const [records, setRecords] = useState([]); 
+  const [currentPage, setCurrentPage] = useState(1);
+  const [recordsPerPage] = useState(7); 
 
   // useEffect to fetch data
   // useEffect(() => {
@@ -21,7 +21,7 @@ const Medical = () => {
   const indexOfFirstRecord = indexOfLastRecord - recordsPerPage;
   const currentRecords = records.slice(indexOfFirstRecord, indexOfLastRecord);
 
-  // Pagination logic
+ 
   const totalPages = Math.ceil(records.length / recordsPerPage);
   const pageNumbers = [];
   for (let i = 1; i <= totalPages; i++) {
