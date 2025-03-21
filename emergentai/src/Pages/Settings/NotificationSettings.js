@@ -1,0 +1,178 @@
+import React, { useState } from "react";
+import { Switch, Menu, Modal, Button, Input } from "antd";
+import axios from "axios";
+import { Link } from "react-router-dom";
+import {
+  UserOutlined,
+  MailOutlined,
+  PhoneOutlined,
+  SettingOutlined,
+  BellOutlined,
+  GlobalOutlined,
+  DeleteOutlined,
+  CheckOutlined,
+  CloseOutlined,
+} from "@ant-design/icons";
+import Sidebar from "../../components/Doctor/Sidebar";
+import TopNav from "../../components/Doctor/TopNav";
+
+const NotificationSettings = () => {
+  const [notificationPreferences, setNotificationPreferences] = useState({
+    email: true,
+    sms: true,
+    app: false,
+  });
+  const [formData, setFormData] = useState({
+    username: "Jane Carol",
+    email: "jane@gmail.com",
+    phone: "+256708210796",
+  });
+
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const [password, setPassword] = useState("");
+
+  const showModal = () => {
+    setIsModalVisible(true); // Show modal
+  };
+
+  const handlePasswordChange = (e) => {
+    setPassword(e.target.value);
+  };
+
+  const handleOk = async () => {
+    if (!password) {
+      alert("Please enter your password.");
+      return;
+    }
+    try {
+      const response = await axios.delete("/api/delete-account", {
+        data: { password },
+      });
+      alert("Account deleted successfully!");
+      setIsModalVisible(false); // Hide modal after successful deletion
+    } catch (error) {
+      console.error("Failed to delete account", error);
+      alert("An error occurred. Please try again.");
+    }
+  };
+
+  const handleCancel = () => {
+    setIsModalVisible(false); // Hide modal
+  };
+
+  const handleSwitchChange = (type) => {
+    const newPreferences = {
+      ...notificationPreferences,
+      [type]: !notificationPreferences[type],
+    };
+    setNotificationPreferences(newPreferences);
+    axios.post("/api/notification-preferences", newPreferences);
+  };
+
+  return (
+    <div className="flex h-screen overflow-hidden">
+      <Sidebar />
+
+      <div className="flex-1 flex flex-col">
+        <TopNav />
+
+        <div className="flex-1 overflow-y-auto pt-16 pb-8 bg-gray-100">
+          <div className="container mx-auto px-4 py-6 max-w-4xl">
+            <div className="bg-white shadow-md rounded-lg p-6 flex space-x-4">
+              <div className="w-64">
+                <div className="flex flex-col items-center">
+                  <img
+                    src="https://via.placeholder.com/150"
+                    alt="profile"
+                    className="rounded-full w-20 h-20 object-cover mb-4"
+                  />
+                  <h2 className="text-lg font-semibold">{formData.username}</h2>
+                  <p className="text-gray-500">{formData.email}</p>
+                </div>
+                <div className="mt-6 space-y-4">
+                  <Link to="/profile-settings">
+                    <button className="w-full py-2 px-2 text-left text-white bg-blue-500 rounded-md flex items-center">
+                      <SettingOutlined className="mr-2" />
+                      Profile Settings
+                    </button>
+                  </Link>
+                  <Link to="/notification-settings">
+                    <button className="w-full py-2 text-left text-gray-700 flex items-center">
+                      <BellOutlined className="mr-2" />
+                      Notification Preferences
+                    </button>
+                  </Link>
+                  <Link to="/language-settings">
+                    <button className="w-full py-2 text-left text-gray-700 flex items-center">
+                      <GlobalOutlined className="mr-2" />
+                      Language Preferences
+                    </button>
+                  </Link>
+                  <button
+                    className="w-full py-2 text-left text-gray-700 flex items-center"
+                    onClick={showModal}
+                  >
+                    <DeleteOutlined className="mr-2" />
+                    Delete Account
+                  </button>
+                </div>
+              </div>
+
+              {/* Main Content */}
+              <div className="flex-1 bg-white shadow-md rounded-lg p-6">
+                <h2 className="text-xl text-gray-600 font-bold mb-4">
+                  Notification Preferences
+                </h2>
+                <div className="space-y-4">
+                  <div className="flex items-center text-gray-700 justify-between">
+                    <span>Email Notifications</span>
+                    <Switch
+                      checked={notificationPreferences.email}
+                      onChange={() => handleSwitchChange("email")}
+                    />
+                  </div>
+                  <div className="flex items-center text-gray-700 justify-between">
+                    <span>SMS Notifications</span>
+                    <Switch
+                      checked={notificationPreferences.sms}
+                      onChange={() => handleSwitchChange("sms")}
+                    />
+                  </div>
+                  <div className="flex items-center text-gray-700 justify-between">
+                    <span>App Notifications</span>
+                    <Switch
+                      checked={notificationPreferences.app}
+                      onChange={() => handleSwitchChange("app")}
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <Modal
+        title="Confirm Deletion"
+        open={isModalVisible} // Use "open" instead of "visible"
+        onOk={handleOk}
+        onCancel={handleCancel}
+        okText="Delete"
+        cancelText="Cancel"
+        okButtonProps={{ danger: true }}
+      >
+        <p>Please enter your password to confirm:</p>
+        <Input.Password
+          placeholder="Password"
+          value={password}
+          onChange={handlePasswordChange}
+        />
+        <p className="text-red-500 mt-2">
+          This action will permanently delete your account.
+        </p>
+      </Modal>
+    </div>
+  );
+};
+
+export default NotificationSettings;
